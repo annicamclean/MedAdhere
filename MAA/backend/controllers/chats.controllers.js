@@ -178,26 +178,6 @@ const getAllReadMessages = async (req, res) => {
     }
 };
 
-const getChatById = async (req, res) => {
-    const { chatId } = req.params;
-
-    // Validate input data
-    if (!chatId) {
-        return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    try {
-        const chat = await model.getChatById(chatId);
-        if (!chat) {
-            return res.status(404).json({ error: 'Chat not found' });
-        }
-        res.status(200).json(chat);
-    } catch (error) {
-        console.error('Error fetching chat:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-};
-
 module.exports = {
     createNewChat,
     getAllChats,
@@ -209,5 +189,4 @@ module.exports = {
     markAsRead,
     getAllUnreadMessages,
     getAllReadMessages,
-    getChatById,
 };

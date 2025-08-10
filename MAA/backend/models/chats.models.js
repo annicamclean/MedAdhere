@@ -107,15 +107,6 @@ const getAllReadMessages = async (userId) => {
     }
 };
 
-const getChatById = async (chatId) => {
-    try {
-        const result = await client.query('SELECT * FROM chats WHERE id = $1;', [chatId]);
-        return result.rows[0]; // Return the first (and should be only) chat
-    } catch (error) {
-        console.error('Error fetching chat:', error);
-        throw error; // Rethrow the error to be handled in the controller
-    }
-};
 
 module.exports = {
     createNewChat,
@@ -128,5 +119,4 @@ module.exports = {
     markAsRead,
     getAllUnreadMessages,
     getAllReadMessages,
-    getChatById,
 };
